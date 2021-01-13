@@ -88,6 +88,7 @@ let name_of = fun wp -> ExtXml.attrib wp "name"
 
 
 let ground_alt = ref 0.
+let max_agl = ref 0.
 let security_height = ref 0.
 let fp_wgs84 = ref { posn_lat = 0.; posn_long = 0.}
 
@@ -966,6 +967,7 @@ let print_flight_plan_h = fun xml utm0 xml_file out_file ->
   (* flight plan header *)
   let get_float = fun x -> float_attrib xml x in
   let qfu = try get_float "qfu" with Xml.No_attribute "qfu" -> 0.
+  and max_agl = try get_float "max_agl" with Xml.No_attribute "max_agl" -> 121.92
   and mdfh = get_float "max_dist_from_home"
   and alt = ExtXml.attrib xml "alt" in
   security_height := get_float "security_height";
@@ -1028,6 +1030,7 @@ let print_flight_plan_h = fun xml utm0 xml_file out_file ->
 
   Xml2h.define_out out "GROUND_ALT" (sof !ground_alt);
   Xml2h.define_out out "GROUND_ALT_CM" (sprintf "%.0f" (100.*. !ground_alt));
+  Xml2h.define_out out "MAX_AGL" (sprintf "%.3f" max_agl);
   Xml2h.define_out out "SECURITY_HEIGHT" (sof !security_height);
   Xml2h.define_out out "SECURITY_ALT" (sof (!security_height +. !ground_alt));
   Xml2h.define_out out "HOME_MODE_HEIGHT" (sof home_mode_height);

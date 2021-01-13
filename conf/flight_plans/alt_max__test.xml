@@ -1,0 +1,25 @@
+<!DOCTYPE flight_plan SYSTEM "flight_plan.dtd">
+
+<flight_plan alt="600" ground_alt="380" max_agl="70" lat0="37.2109800" lon0="-113.4567800" max_dist_from_home="500" name="ExceptionsTest" qfu="270" security_height="25">
+  <header>
+    #include "math.h"
+    #include "subsystems/datalink/datalink.h"
+    #include "nav.h"
+    #include "stabilization/stabilization_attitude.h"
+    #include "state.h"
+</header>
+  <waypoints>
+    <waypoint name="HOME" x="0" y="0"/>
+    <waypoint name="STDBY" x="0" y="75"/>
+    <waypoint name="STRT" x="-350" y="-350"/>
+    <waypoint name="TRGT" x="350" y="350"/>
+  </waypoints>
+  <blocks>
+    <block name="AscendingHelixTargetAlt">
+      <circle alt="600.0" radius="75" wp="HOME"/>
+    </block>
+    <block name="GoHome">
+      <go wp="HOME"/>
+    </block>
+  </blocks>
+</flight_plan>

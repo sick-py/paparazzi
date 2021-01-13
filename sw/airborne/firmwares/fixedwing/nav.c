@@ -50,6 +50,8 @@ uint8_t last_wp __attribute__((unused));
 float rc_pitch;
 float carrot_x, carrot_y;
 
+float max_agl_m = MAX_AGL;
+
 /** Status on the current circle */
 float nav_circle_radians; /* Cumulated */
 float nav_circle_radians_no_rewind; /* Cumulated */

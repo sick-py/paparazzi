@@ -319,6 +319,10 @@ void v_ctl_altitude_loop(void)
   }
 #endif
 
+  if(v_ctl_altitude_setpoint > max_agl_m+ground_alt) {
+    v_ctl_altitude_setpoint = max_agl_m+ground_alt;
+  }
+
   v_ctl_altitude_error = v_ctl_altitude_setpoint - stateGetPositionUtm_f()->alt;
   v_ctl_climb_setpoint = altitude_pgain_boost * v_ctl_altitude_pgain * v_ctl_altitude_error
                          + v_ctl_altitude_pre_climb * v_ctl_altitude_pre_climb_correction;

@@ -64,6 +64,7 @@ lat0 CDATA #REQUIRED
 lon0 CDATA #REQUIRED
 max_dist_from_home CDATA #REQUIRED
 ground_alt CDATA #REQUIRED
+max_agl CDATA #IMPLIED
 security_height CDATA #REQUIRED
 alt CDATA #REQUIRED
 qfu CDATA #IMPLIED
